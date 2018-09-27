@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+user1 = User.create(name: "William", email: "William@test.com", cash: 5000)
+stock1 = Stock.create(ticker_symbol: "NFLX-test", current_value: 381.17)
+Transaction.create(user: user1, stock: stock1, value_of_each: 381.15, number_of_shares: 6)
