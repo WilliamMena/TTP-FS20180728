@@ -1,3 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+
+  private
+
+  def validate_user
+    if current_user.nil?
+      redirect_to root_path
+    end
+  end
 end
