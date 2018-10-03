@@ -10,8 +10,25 @@ class User < ApplicationRecord
   has_many :stocks, through: :transactions
   has_one :portfolio
 
-  # def portfolio
-  #   binding.pry
-  # end
+  def buy(symbol, amount)
+    if !Stock.supported?(symbol)
+      puts "We don't support this stock"
+      return false
+    else
+      stock = Stock.find_or_create_by(ticker_symbol: symbol)
+      binding.pry
+    end
+
+    if (stock.current_value * amount) <= self.cash
+      self.transactions.create(stock: stock, value_of_each: stock.current_value, number_of_shares: amount)
+      self.cash = self.cash - (stock.current_value * amount)
+      puts "Bought some stock"
+    else
+      puts "You don't have enough money for this amount"
+      return false
+    end
+
+    return true
+  end
 
 end
