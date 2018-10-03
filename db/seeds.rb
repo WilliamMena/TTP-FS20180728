@@ -8,4 +8,5 @@
 
 user1 = User.create(name: "William", email: "William@test.com", cash: 5000, password: "password")
 stock1 = Stock.create(ticker_symbol: "NFLX-test", current_value: 381.17)
-Transaction.create(user: user1, stock: stock1, value_of_each: 381.15, number_of_shares: 6)
+# Transaction.create(user: user1, stock: stock1, value_of_each: 381.15, number_of_shares: 6)
+user1.buy("NFLX", 1)

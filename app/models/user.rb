@@ -21,11 +21,13 @@ class User < ApplicationRecord
 
     if (stock.current_value * amount) <= self.cash
       self.transactions.create(stock: stock, value_of_each: stock.current_value, number_of_shares: amount)
+      owned_stock = OwnedStock.find_by({user: self, stock_id: stock})
+      if owned_stock
+        owned_stock.buy(amount)
+      else
+        owned_stock = OwnedStock.create({user: self, stock: stock, amount: amount})
+      end
       self.cash = self.cash - (stock.current_value * amount)
-      binding.pry
-      
-      self.owned_stocks.buy(symbol, amount)
-
       self.save
       puts "Bought some stock"
     else
