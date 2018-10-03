@@ -34,7 +34,6 @@ class User < ApplicationRecord
       puts "You don't have enough money for this amount"
       return false
     end
-
     return true
   end
 

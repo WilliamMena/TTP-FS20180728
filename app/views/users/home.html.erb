@@ -21,7 +21,7 @@
     <hr>
 
     <div class="col-sm-6">
-      <h2>Cash - <%= @cash %></h2>
+      <h3>Cash - <%= @cash %></h3>
 
       <%= form_for :transactions, url: "/transactions" do |f| %>
         <br>
@@ -31,6 +31,8 @@
         <br>
         <%= f.submit "Buy" %>
       <% end %>
+
+      <div id="form_alert"></div>
     </div>
 
   </div>
