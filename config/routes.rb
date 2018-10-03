@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   root 'session#welcome'
 
   get '/home' => 'users#home'
+  get '/transactions' => 'users#transactions'
 end

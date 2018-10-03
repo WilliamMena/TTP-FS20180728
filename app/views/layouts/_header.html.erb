@@ -1,6 +1,7 @@
 <header>
   <% if signed_in? %>
     <%= link_to "Home", home_path %>
+    <%= link_to "Transactions", transactions_path %>
     <!-- <%= link_to "Sign Out", destroy_user_session_path %> -->
   <% else %>
     <%= link_to "Sign In", new_user_session_path %>

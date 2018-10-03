@@ -10,4 +10,8 @@ class UsersController < ApplicationController
     @value = current_user.portfolio_value
     render :home
   end
+
+  def transactions
+    render :transactions
+  end
 end
