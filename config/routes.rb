@@ -6,4 +6,6 @@ Rails.application.routes.draw do
 
   get '/home' => 'users#home'
   get '/transactions' => 'users#transactions'
+
+  resources :transactions, only: [:create]
 end

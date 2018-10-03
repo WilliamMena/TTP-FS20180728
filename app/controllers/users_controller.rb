@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @user = current_user
     @cash = ActionController::Base.helpers.number_to_currency(current_user.cash)
     @value = current_user.portfolio_value
+    @transaction = current_user.transactions.new
     render :home
   end
 
