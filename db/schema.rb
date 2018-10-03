@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181003041830) do
+ActiveRecord::Schema.define(version: 20181003060639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "portfolios", force: :cascade do |t|
+  create_table "owned_stocks", force: :cascade do |t|
     t.bigint "user_id"
     t.decimal "amount"
     t.bigint "stock_id"
-    t.index ["stock_id"], name: "index_portfolios_on_stock_id"
-    t.index ["user_id"], name: "index_portfolios_on_user_id"
+    t.index ["stock_id"], name: "index_owned_stocks_on_stock_id"
+    t.index ["user_id"], name: "index_owned_stocks_on_user_id"
   end
 
   create_table "stocks", force: :cascade do |t|

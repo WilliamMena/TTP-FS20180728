@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   has_many :transactions
   has_many :stocks, through: :transactions
-  has_one :portfolio
+  has_many :owned_stocks
 
   def buy(symbol, amount)
     if !Stock.supported?(symbol)
@@ -16,12 +16,17 @@ class User < ApplicationRecord
       return false
     else
       stock = Stock.find_or_create_by(ticker_symbol: symbol)
-      binding.pry
+      stock.update_value
     end
 
     if (stock.current_value * amount) <= self.cash
       self.transactions.create(stock: stock, value_of_each: stock.current_value, number_of_shares: amount)
       self.cash = self.cash - (stock.current_value * amount)
+      binding.pry
+      
+      self.owned_stocks.buy(symbol, amount)
+
+      self.save
       puts "Bought some stock"
     else
       puts "You don't have enough money for this amount"
