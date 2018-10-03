@@ -1,6 +1,7 @@
 <h1>Transactions</h1>
 
 <div class="transaction_list">
+  <small>Most recent first</small>
   <% @transactions.each do |d| %>
     <div class="transactions">
       <%= d.stock.ticker_symbol %> - <%= d.number_of_shares %> Shares - Each: <%= d.value_of_each %>
