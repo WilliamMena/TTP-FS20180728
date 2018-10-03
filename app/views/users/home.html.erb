@@ -1,24 +1,38 @@
-<h2>Portfolio (<%= @value %>)</h2>
-<h4><%= @user.name %></h4>
-
-<div class="owned_stock_list">
-  <% @user.owned_stocks.each do |s| %>
-    <div>
-      <%= s.stock.ticker_symbol %> - <%= s.amount.to_i %> shares - <%= ActionController::Base.helpers.number_to_currency(s.amount * s.stock.current_value)  %>
+<div class="container">
+  <div class="row text-center">
+    <div class="col-12">
+      <h2>Portfolio (<%= @value %>)</h2>
     </div>
-  <% end %>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="owned_stock_list">
+        <% @user.owned_stocks.each do |s| %>
+          <div>
+            <%= s.stock.ticker_symbol %> - <%= s.amount.to_i %> shares - <%= ActionController::Base.helpers.number_to_currency(s.amount * s.stock.current_value)  %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="col-sm-6">
+      <h2>Cash - <%= @cash %></h2>
+
+      <%= form_for :transactions, url: "/transactions" do |f| %>
+        <br>
+        <%= f.text_field :stock_id, placeholder: "Ticker" %>
+        <br>
+        <%= f.text_field :number_of_shares, placeholder: "Quantity" %>
+        <br>
+        <%= f.submit "Buy" %>
+      <% end %>
+    </div>
+
+  </div>
+
 </div>
-
-<hr>
-
-<h2>Cash - <%= @cash %></h2>
-
-<%= form_for :transactions, url: "/transactions" do |f| %>
-  Form For
-  <br>
-  <%= f.text_field :stock_id, placeholder: "Ticker" %>
-  <br>
-  <%= f.text_field :number_of_shares, placeholder: "Quantity" %>
-  <br>
-  <%= f.submit "Buy" %>
-<% end %>
