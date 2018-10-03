@@ -1,1 +1,10 @@
-<h1>Your Transactions</h1>
+<h1>Transactions</h1>
+
+<div class="transaction_list">
+  <% @transactions.each do |d| %>
+    <div class="transactions">
+      <%= d.stock.ticker_symbol %> - <%= d.number_of_shares %> Shares - Each: <%= d.value_of_each %>
+    </div>
+  <% end %>
+
+</div>

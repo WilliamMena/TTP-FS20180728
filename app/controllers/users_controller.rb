@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   end
 
   def transactions
+    @transactions = current_user.transactions.reverse
     render :transactions
   end
 end
