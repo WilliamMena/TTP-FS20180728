@@ -20,7 +20,7 @@ class User < ApplicationRecord
     end
 
     if (stock.current_value * amount) <= self.cash
-      self.transactions.create(stock: stock, value_of_each: stock.current_value, number_of_shares: amount)
+      self.transactions.create(stock: stock, value_of_each: stock.current_value, number_of_shares: amount, bought: true)
       owned_stock = OwnedStock.find_by({user: self, stock_id: stock})
       if owned_stock
         owned_stock.buy(amount)
