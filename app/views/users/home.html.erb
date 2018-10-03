@@ -1,9 +1,16 @@
-<h2>Portfolio</h2>
+<h2>Portfolio (<%= @value %>)</h2>
 <h4><%= @user.name %></h4>
 
+<div class="owned_stock_list">
+  <% @user.owned_stocks.each do |s| %>
+    <div>
+      <%= s.stock.ticker_symbol %> - <%= s.amount.to_i %> shares - <%= ActionController::Base.helpers.number_to_currency(s.amount * s.stock.current_value)  %>
+    </div>
+  <% end %>
+</div>
 
 
 
-
+<hr>
 
 <h2>Cash - <%= @cash %></h2>

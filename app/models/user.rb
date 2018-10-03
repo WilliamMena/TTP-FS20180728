@@ -38,4 +38,12 @@ class User < ApplicationRecord
     return true
   end
 
+  def portfolio_value
+    amount = 0
+    self.owned_stocks.each do |s|
+      amount += s.stock.current_value * s.amount
+    end
+    return ActionController::Base.helpers.number_to_currency(amount)
+  end
+
 end
