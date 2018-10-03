@@ -8,5 +8,10 @@ class User < ApplicationRecord
 
   has_many :transactions
   has_many :stocks, through: :transactions
+  has_one :portfolio
+
+  # def portfolio
+  #   binding.pry
+  # end
 
 end
