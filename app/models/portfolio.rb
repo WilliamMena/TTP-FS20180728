@@ -1,4 +1,4 @@
-class Portfolio < ActiveRecord
+class Portfolio < ApplicationRecord
   belongs_to :user
   has_many :stocks
 
