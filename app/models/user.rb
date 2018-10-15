@@ -10,6 +10,12 @@ class User < ApplicationRecord
   has_many :stocks, through: :transactions
   has_many :owned_stocks
 
+  after_initialize :set_defaults, unless: :persisted?
+
+  def set_defaults
+    self.cash = 5000
+  end
+
   def buy(symbol, amount)
     if !Stock.supported?(symbol)
       puts "We don't support this stock"
