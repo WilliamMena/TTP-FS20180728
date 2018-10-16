@@ -13,7 +13,8 @@
       <div class="owned_stock_list">
         <% @user.owned_stocks.each do |s| %>
           <div>
-            <%= s.stock.ticker_symbol %> - <%= s.amount.to_i %> shares - <%= ActionController::Base.helpers.number_to_currency(s.amount * s.stock.current_value)  %>
+            <b class="text-primary"><%= s.stock.ticker_symbol %></b> - <%= s.amount.to_i %> shares - <%= ActionController::Base.helpers.number_to_currency(s.amount * s.stock.current_value)  %>
+            Current Value: <%= s.stock.current_value %>
           </div>
         <% end %>
       </div>
