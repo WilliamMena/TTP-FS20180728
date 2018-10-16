@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def home
     @user = current_user
+    Stock.update_all_for_user(current_user.id)
     @cash = ActionController::Base.helpers.number_to_currency(current_user.cash)
     @value = current_user.portfolio_value
     @transaction = current_user.transactions.new
