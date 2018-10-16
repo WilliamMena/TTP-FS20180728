@@ -19,11 +19,13 @@ class Stock < ApplicationRecord
     uri = URI(url)
     response = Net::HTTP.get(uri)
     data = JSON.parse(response)
-    return data["latestPrice"]
+    return data
   end
 
   def update_value
-    self.current_value = Stock.current_value(self.ticker_symbol)
+    data = Stock.current_value(self.ticker_symbol)
+    self.todays_open = data["open"]
+    self.current_value = data["latestPrice"]
     if self.save
       return true
     else
