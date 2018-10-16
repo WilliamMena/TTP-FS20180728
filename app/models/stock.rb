@@ -32,4 +32,16 @@ class Stock < ApplicationRecord
       return false
     end
   end
+
+  def current_color
+    if self.current_value > self.todays_open
+      return "text-success"
+    elsif self.current_value == self.todays_open
+      return "text-secondary"
+    elsif self.current_value < self.todays_open
+      return "text-danger"
+    else
+      return "text-dark"
+    end
+  end
 end
